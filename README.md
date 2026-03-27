@@ -52,7 +52,7 @@ src/main/java/com/desafio/api/
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/desafio-final-XPeducacao.git
+git clone https://github.com/lleolopes03/desafio-final-XPeducacao.git
 
 # Entrar na pasta
 cd desafio-final-XPeducacao

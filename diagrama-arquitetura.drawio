@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- Titulo -->
+    <mxCell id="2" value="Arquitetura MVC - API REST de Clientes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="200" y="30" width="760" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- Cliente HTTP -->
+    <mxCell id="3" value="&lt;b&gt;Cliente HTTP&lt;/b&gt;&lt;br&gt;(Postman / Browser / Frontend)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="430" y="100" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- Seta Cliente -> Controller -->
+    <mxCell id="4" value="Requisição HTTP&lt;br&gt;(GET, POST, PUT, DELETE)" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;" edge="1" source="3" target="5" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Controller -->
+    <mxCell id="5" value="&lt;b&gt;ClienteController&lt;/b&gt;&lt;br&gt;/clientes&lt;br&gt;&lt;br&gt;@RestController&lt;br&gt;Recebe requisições REST e&lt;br&gt;retorna respostas HTTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="390" y="230" width="380" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Seta Controller -> Service -->
+    <mxCell id="6" value="Chama métodos&lt;br&gt;de negócio" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;" edge="1" source="5" target="7" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Service -->
+    <mxCell id="7" value="&lt;b&gt;ClienteService&lt;/b&gt;&lt;br&gt;&lt;br&gt;@Service&lt;br&gt;Contém a lógica de negócio:&lt;br&gt;criar, listar, buscar, atualizar,&lt;br&gt;deletar, contar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="390" y="400" width="380" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Seta Service -> Repository -->
+    <mxCell id="8" value="Consultas e&lt;br&gt;persistência" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;" edge="1" source="7" target="9" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Repository -->
+    <mxCell id="9" value="&lt;b&gt;ClienteRepository&lt;/b&gt;&lt;br&gt;&lt;br&gt;@Repository&lt;br&gt;Herda JpaRepository&lt;br&gt;CRUD automático + findByNome" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="390" y="570" width="380" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Seta Repository -> H2 -->
+    <mxCell id="10" value="SQL / JPA" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;" edge="1" source="9" target="11" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- H2 Database -->
+    <mxCell id="11" value="&lt;b&gt;Banco de Dados H2&lt;/b&gt;&lt;br&gt;(In-Memory)&lt;br&gt;&lt;br&gt;Tabela: clientes&lt;br&gt;id | nome | email | telefone" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="430" y="740" width="300" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Seta de retorno Controller -> Cliente -->
+    <mxCell id="12" value="Resposta JSON" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="5" target="3" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="840" y="280" />
+          <mxPoint x="840" y="130" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Model box separado -->
+    <mxCell id="13" value="&lt;b&gt;Cliente (Model / Entidade)&lt;/b&gt;&lt;br&gt;&lt;br&gt;@Entity&lt;br&gt;- id: Long&lt;br&gt;- nome: String&lt;br&gt;- email: String&lt;br&gt;- telefone: String" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="50" y="450" width="250" height="130" as="geometry" />
+    </mxCell>
+
+    <!-- Seta Model -> Service (usa) -->
+    <mxCell id="14" value="utilizado por" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;dashed=1;endArrow=open;" edge="1" source="13" target="7" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Endpoints legenda -->
+    <mxCell id="15" value="&lt;b&gt;Endpoints da API&lt;/b&gt;&lt;br&gt;POST /clientes → Criar&lt;br&gt;GET /clientes → Listar todos&lt;br&gt;GET /clientes/{id} → Buscar por ID&lt;br&gt;GET /clientes/nome/{nome} → Buscar por nome&lt;br&gt;GET /clientes/contar → Contar registros&lt;br&gt;PUT /clientes/{id} → Atualizar&lt;br&gt;DELETE /clientes/{id} → Deletar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;" vertex="1" parent="1">
+      <mxGeometry x="820" y="370" width="300" height="160" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
